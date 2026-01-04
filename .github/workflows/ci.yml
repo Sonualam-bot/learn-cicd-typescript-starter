@@ -24,9 +24,22 @@ jobs:
       - name: Run tests
         run : npm run test --coverage
       
-      - name: Check code formatting
-        run: npm run format:check
+  style: 
+    name: Code Style Check
+    runs-on: ubuntu-latest
 
-      - name: Write format
-        run : npm run format:write
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Check code style
+        run: npm run format:check
 
