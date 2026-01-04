@@ -18,5 +18,11 @@ jobs:
         with:
           node-version: 18
 
-      - name: Check Node version
-        run: node --version
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run : npm run test
+
+      - name: Break code
+        run: echo "Intentionally breaking the pipeline for testing" && exit 1
